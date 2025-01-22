@@ -10,6 +10,7 @@ plugins {
 	id 'me.champeau.jmh' version '0.7.2' apply false
 	id 'me.champeau.mrjar' version '0.1.1'
 	id "net.ltgt.errorprone" version "3.1.0" apply false
+	id "org.sonarqube" version "6.0.1.5171"
 }
 
 ext {
@@ -111,4 +112,12 @@ configure([rootProject] + javaProjects) { project ->
 
 configure(moduleProjects) { project ->
 	apply from: "${rootDir}/gradle/spring-module.gradle"
+}
+
+sonar {
+	properties {
+		property "sonar.projectKey", "thowimmer-hgb_spring-framework"
+		property "sonar.organization", "thowimmer-hgb"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
 }
